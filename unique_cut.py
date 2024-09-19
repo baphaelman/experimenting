@@ -8,8 +8,10 @@ def finalFunc(red, blue, pieces):
     redPieces = red + 1
     bluePieces = blue + 1
 
-    if pieces < redPieces and pieces < bluePieces: # if there are fewer total pieces than red and blue pieces, clearly each will have at least one
+    if pieces - 2 < redPieces and pieces < bluePieces: # if there are fewer total pieces than red and blue pieces, clearly each will have at least one
         return True
+    if pieces - 2 > red + blue: 
+        return False
 
     subFactor = lcm(redPieces, bluePieces)
     sumRed = lcm(pieces, bluePieces) # what to add succesively when testing for reds
@@ -35,7 +37,6 @@ def finalFunc(red, blue, pieces):
         tracker += sumBlue
     
     # return whether counts has all the numbers from 2 to pieces - 1 (this excludes the end pieces)
-    print(sorted(counts))
     for i in range(2, pieces - 1):
         if i not in counts:
             return False
